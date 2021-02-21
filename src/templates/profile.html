@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Teacher Profile{% endblock title %}
+
+{% block body %}
+<main class="container mt-3">
+  <div class="card my-4 mx-auto">
+    <div class="card-body m-2 m-md-4">
+      <article class="row">
+        <div class="col-5"><img src="{{ context.teacher.picture }}" class="img-fluid" alt=""></div>
+        <div class="col-7">
+
+          <section class="teacher=info">
+
+            <h1 class="h2">{{ context.teacher.name }}</h1>
+            <p>
+              {% for goal in context.goals %}
+              <span class="badge badge-secondary mr-2">{{ goal.description }}</span>
+              {% endfor %}
+              Рейтинг: {{ context.teacher.rating }} Ставка: {{ context.teacher.price }} / час
+            </p>
+            <p>{{ context.teacher.about }}</p>
+
+          </section>
+
+          <section class="available">
+
+            <h4 class="mb-4 mt-5">Записаться на пробный урок</h4>
+
+            {% for day, lessons in context.teacher.free.items() %}
+            <h6 class="mt-4">{{ context.days[day] }}</h6>
+              {% if not True in lessons.values() %}
+              Нет свободных уроков
+              {% endif %}
+              {% for time, availability in lessons.items() %}
+                {% if availability %}
+                  <a href="{{ url_for('booking_view', teacher_id=context.teacher.id, day=day, time=time) }}" class="btn btn-outline-success mr-2 mb-2">{{ time }} свободно</a>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+
+          </section>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</main>
+
+{% endblock body %}
