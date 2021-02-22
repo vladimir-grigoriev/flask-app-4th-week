@@ -1,6 +1,6 @@
-from app import app, db
-import urls
-import models
+from src.app import app, db
+import src.urls
+import src.models
 
 
 if __name__ == '__main__':

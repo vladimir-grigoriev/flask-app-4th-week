@@ -3,10 +3,10 @@ import json
 
 from flask import render_template, request, redirect, url_for, session
 
-import constants
-from forms import GoalForm, RequestForm, BookingForm
-from app import app, db
-from models import Goal, Teacher
+import src.constants as constants
+from src.forms import GoalForm, RequestForm, BookingForm
+from src.app import app, db
+from src.models import Goal, Teacher
 
 
 @app.route('/')
