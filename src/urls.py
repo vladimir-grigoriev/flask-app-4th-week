@@ -75,7 +75,7 @@ def teacher_profile_view(teacher_id):
 
     context = {
         'days': constants.days,
-        'teacher': Teacher.query.get(teacher_id),
+        'teacher': Teacher.query.get_or_404(teacher_id),
         'goals': Teacher.query.get(teacher_id).goals
     }
 
