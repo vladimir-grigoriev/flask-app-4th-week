@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask
-from .config import Configuration
+from src.config import Configuration
 from flask_sqlalchemy import SQLAlchemy
 
 from flask_migrate import Migrate, MigrateCommand
